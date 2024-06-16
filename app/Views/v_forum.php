@@ -20,7 +20,7 @@
                             <img src="https://via.placeholder.com/50" alt="Profile Picture" class="rounded-circle me-3">
                             <div>
                                 <!-- <h5 class="card-title"><?= $data['username']; ?></h5> -->
-                                <p class="card-text my-1"><?= $data['inner']; ?></p>
+                                <p class="card-text my-1"><?= nl2br(esc($data['inner'])); ?></p>
                                 <p class="card-text my-1">- <?= $data['username']; ?></p>
                                 <p class="card-text my-1 text-muted">
                                     <!-- Icon komentar -->
@@ -55,9 +55,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Top Creators</h5>
                     <ul class="list-unstyled">
-                        <li>miqitiy</li>
-                        <li>Baro</li>
-                        <!-- More top creators go here -->
+                        <?php foreach($users as $data): ?>
+                        <li><?= $data['username']; ?></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>

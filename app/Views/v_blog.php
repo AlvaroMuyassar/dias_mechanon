@@ -46,13 +46,15 @@
                 </form>
             </div>
         </div>
-            <div class="row align-items-stretch"><?php foreach ($blog as $data) : ?>
+        <div class="row align-items-stretch"><?php foreach ($blog as $data) : ?>
                 <div class="col-3 mb-3">
                     <a href="<?= base_url("/viewblog/" . $data['id_blog']); ?>" class="hover">
                         <div class="bg-white rounded border shadow-sm d-flex flex-column gap-2 text-dark h-100">
                             <img src="<?= base_url('/image/' . $data['id_blog']); ?>" class="img-fluid rounded-top" alt="Blog Image">
                             <div class="p-2">
-                                <div class="clamp w-100" style="white-space: nowrap; word-wrap: break-word; text-overflow: ellipsis; overflow: hidden;"><h3 class="text-decoration-none"><?= $data['judul']; ?></h3></div>
+                                <div class="clamp w-100" style="white-space: nowrap; word-wrap: break-word; text-overflow: ellipsis; overflow: hidden;">
+                                    <h3 class="text-decoration-none"><?= $data['judul']; ?></h3>
+                                </div>
                                 <div class="clamp w-100">
                                     <p class="text-decoration-none" style="white-space: nowrap; word-wrap: break-word; text-overflow: ellipsis; overflow: hidden;">
                                         <?= $data['isi']; ?>
@@ -65,6 +67,7 @@
                         </div>
                     </a>
                 </div>
-            <?php endforeach; ?></div>
+            <?php endforeach; ?>
+        </div>
     </div>
 </section>
