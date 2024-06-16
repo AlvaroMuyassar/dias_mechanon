@@ -31,7 +31,7 @@ class Home extends BaseController
         $files = scandir($directory);
         $num_files = count($files) - 2;
 
-    $data['post'] = $this->m_blog->findAll(3);
+    $data['post'] = $this->m_blog->OrderBy('id_blog',"DESC")->findAll(3);
 
         $link['url'] = $this->url();
         $data['files'] = $num_files;
@@ -52,13 +52,16 @@ class Home extends BaseController
         $link['url'] = $this->url();
         // $data['forum'] = $this->m_forum->findAll();
         $builder = $this->db->table('forum');
-        $data['forum'] = $builder->select("*")->join("user",'user.id_user=forum.id_user')->get()->getResultArray();
+        $data['forum'] = $builder->select("*")->OrderBy('id_forum',"DESC")->join("user",'user.id_user=forum.id_user')->get()->getResultArray();
+        $data['users'] = $builder->join("user",'user.id_user=forum.id_user')->select('forum.id_user, COUNT(*) as post_count, username')->groupBy('forum.id_user')->OrderBy('post_count',"DESC")->get()->getResultArray();
+        // dd($data);
         echo view('top', $link);
         echo view('v_forum',$data);
         echo view('bottom');
     }
     public function foruminsert(){
         // dd($_POST);
+        // $_POST['inner'] = htmlspecialchars();
         if($this->m_forum->insert($_POST)){
             return redirect()->back()->with('message', 'Forum Posted');
         }
